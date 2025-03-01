@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Select Image</title>
+    
+    <!-- Link to locally stored CSS files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='skeleton.css') }}">
+
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .thumbnail {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            transition: 0.3s;
+        }
+        .thumbnail:hover {
+            border-color: #000;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Upload an Image</h3>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" class="button-primary">
+            <input type="submit" value="Upload" class="button">
+        </form>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+
+        <h3>Click an Image to Set It on the Display</h3>
+        <div class="gallery">
+            {% for image in images %}
+                <a href="{{ url_for('set_image', filename=image) }}">
+                    <img src="{{ url_for('thumbnail_file', filename=image) }}" class="thumbnail">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+
