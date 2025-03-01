@@ -15,7 +15,7 @@ This project provides a Flask-based web interface for uploading and selecting im
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/hannahapuan/inky-display.git
-cd inky-image-uploader
+cd inky-display
 ```
 
 ### 2. Install Dependencies
@@ -29,16 +29,19 @@ pip install -r requirements.txt
 mkdir -p uploads/thumbnails
 ```
 
-### 4. (Optional) Add to startup script (this specifies the impression7.3 inky screen)
+### 4. (Optional) Add to startup script (this specifies the impressions7.3 inky screen for resolution purposes)
 Create/edit `/etc/rc.local`
 ```bash
-
+#!/bin/bash
+. /home/admin/.virtualenvs/pimoroni/bin/activate
+python3 /home/admin/file_uploader.py --type=impressions73 >> /home/admin/log.txt 2>&1 &
+exit 0
 ```
 
 ## Usage
 ### 1. Run the Flask App
 ```bash
-python app.py
+python file_uploader.py
 ```
 
 ### 2. Access the Web Interface
@@ -70,6 +73,7 @@ inky-image-uploader/
 │── uploads/thumbnails/      # Stores generated thumbnails
 │── app.py                   # Flask application
 │── requirements.txt         # Python dependencies
+|── disable.sh               # Disables unnecessary Raspberry Pi hardware for battery saving
 │── README.md                # Project documentation
 ```
 
@@ -104,8 +108,5 @@ Or check your router's admin panel.
 - 🔄 **Auto-refresh gallery** after an upload.
 - 🛠️ **Delete uploaded images** from the web UI.
 - 🌐 **Add support for remote image uploads.**
-
-## License
-This project is **open-source** under the MIT License.
 
 Enjoy using your Inky Impression as a **dynamic e-paper display!** 🎉
