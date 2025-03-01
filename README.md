@@ -40,8 +40,10 @@ exit 0
 
 ## Usage
 ### 1. Run the Flask App
+This specifies the impression73 screen, it can be changed (refer to inky documentation for values)
 ```bash
-python file_uploader.py
+source /home/admin/.virtualenvs/pimoroni/bin/activate
+python3 /home/admin/file_uploader.py --type=impressions73
 ```
 
 ### 2. Access the Web Interface
